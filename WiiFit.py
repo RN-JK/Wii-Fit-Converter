@@ -53,7 +53,7 @@ class RhythmKungFu:
 
         json.dump(data,open(output,'w'))
     
-    def Compile(input,output,type):
+    def Compile(input,output):
         data=json.load(open(input))
         b=open(output,'wb')
         for d in data:
@@ -61,12 +61,8 @@ class RhythmKungFu:
             b.write(struct.pack('>B',d[1]))
             b.write(struct.pack('>B',d[2]))
 
-        if type==0:
-            for _ in range(28):
-                b.write(b'\xFF')
-        if type==1:
-            for _ in range(24):
-                b.write(b'\xFF')
+        for _ in range(24):
+            b.write(b'\xFF')
         
         b.close()
 
